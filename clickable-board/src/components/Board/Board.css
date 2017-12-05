@@ -1,0 +1,7 @@
+.gameBoard {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow: auto;
+}

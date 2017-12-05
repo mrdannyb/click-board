@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Wrapper from './components/Wrapper';
 import cards from './cards.json';
 import Card from './components/Card';
+import Board from './components/Board';
 import './App.css';
 
 class App extends Component {
   state = {
-    row: 0,
     cards
   }
 
@@ -14,24 +14,24 @@ class App extends Component {
     this.setState({cards: this.state.cards.sort(() => Math.random() - 0.5)});
   }
 
-
-  // dealCards = () => this.state.cards.map(n =>
-  //   <Card key={cards.key} src={cards.src} alt={cards.src} />
-  // )
+  handleClick = event => {
+    this.setState({ cards : shuffleA(this.state.cards)})
+  }
 
   render() {
 
     return (
       <Wrapper>
-        <h1>This is a page</h1>
-        {console.log(cards)}
-        <div className="board">
-          {this.state.cards.map(n => <Card
-            key={cards.key} src={cards.src} alt={cards.src} />)}
-        </div>
+        <h1>Welcome to a clickable board</h1>
+        <Board>
+          {this.state.cards.map(card => <Card
+            key={card.id} src={card.src} alt={card.src} onClick={this.handleClick} />)}
+        </Board>
       </Wrapper>
     );
   }
 }
+
+const shuffleA = arr => arr.sort(() => Math.random() - 0.5);
 
 export default App;
